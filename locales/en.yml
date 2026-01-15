@@ -1,0 +1,5 @@
+en:
+  theme_metadata:
+    description: Display a UCF with html
+    settings:
+      example_setting: A description of a setting.
