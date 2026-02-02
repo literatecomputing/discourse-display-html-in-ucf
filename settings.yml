@@ -1,2 +1,5 @@
-example_setting:
-  default: true
+custom_user_field_ids:
+  type: list
+  default: 4|14
+  description: "Enter the IDs of the custom user fields (as integers), separated by |"
+
