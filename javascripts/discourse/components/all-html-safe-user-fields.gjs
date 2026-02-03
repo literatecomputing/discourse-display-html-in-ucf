@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
-import { htmlSafe } from "@ember/template";
 import { service } from "@ember/service";
+import { htmlSafe } from "@ember/template";
 // Theme settings are accessed via the global 'settings' object in Discourse themes
 
 export default class AllHtmlSafeUserFields extends Component {
