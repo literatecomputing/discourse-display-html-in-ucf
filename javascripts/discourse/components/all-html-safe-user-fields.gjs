@@ -1,15 +1,20 @@
 import Component from "@glimmer/component";
 import { htmlSafe } from "@ember/template";
+import { service } from "@ember/service";
+// Theme settings are accessed via the global 'settings' object in Discourse themes
 
 export default class AllHtmlSafeUserFields extends Component {
+  @service site;
+
   get htmlSafeFieldIds() {
+    // Access theme setting from global settings object
     const settingValue = settings?.custom_user_field_ids || "";
 
     return String(settingValue).split("|").filter(Boolean);
   }
 
   get fields() {
-    const site = this.args.site;
+    const site = this.site;
     const user = this.args.user;
     const htmlSafeFieldIds = this.htmlSafeFieldIds;
 
