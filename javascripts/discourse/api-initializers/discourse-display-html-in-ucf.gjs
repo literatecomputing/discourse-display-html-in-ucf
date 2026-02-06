@@ -4,11 +4,15 @@ import AllHtmlSafeUserFields from "../components/all-html-safe-user-fields";
 export default apiInitializer((api) => {
   api.renderInOutlet(
     "user-card-before-badges",
-    <template><AllHtmlSafeUserFields @user={{@user}} /></template>
+    <template>
+      <AllHtmlSafeUserFields @user={{@user}} @page="user-card" />
+    </template>
   );
 
   api.renderInOutlet(
     "user-profile-public-fields",
-    <template><AllHtmlSafeUserFields @user={{@model}} /></template>
+    <template>
+      <AllHtmlSafeUserFields @user={{@model}} @page="user-profile" />
+    </template>
   );
 });

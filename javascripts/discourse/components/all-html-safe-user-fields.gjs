@@ -17,7 +17,6 @@ export default class AllHtmlSafeUserFields extends Component {
     const site = this.site;
     const user = this.args.user;
     const htmlSafeFieldIds = this.htmlSafeFieldIds;
-
     if (!site?.user_fields || !user?.user_fields) {
       return [];
     }
@@ -28,13 +27,15 @@ export default class AllHtmlSafeUserFields extends Component {
         if (!value) {
           return null;
         }
-
         const isHtmlSafe = htmlSafeFieldIds.includes(String(field.id));
-
         return {
           name: field.name,
           value: isHtmlSafe ? htmlSafe(value) : value,
           id: field.id,
+          shouldRender:
+            this.args.page === "user-profile"
+              ? field.show_on_profile
+              : field.show_on_user_card,
         };
       })
       .filter(Boolean);
@@ -42,13 +43,15 @@ export default class AllHtmlSafeUserFields extends Component {
 
   <template>
     {{#each this.fields as |field|}}
-      <div
-        class="html-safe-public-user-field html-safe-ucf"
-        data-field-id={{field.id}}
-      >
-        <span class="user-field-name">{{field.name}}: </span>
-        <span class="user-field-value">{{field.value}}</span>
-      </div>
+      {{#if field.shouldRender}}
+        <div
+          class="html-safe-public-user-field html-safe-ucf"
+          data-field-id={{field.id}}
+        >
+          <span class="user-field-name">{{field.name}}: </span>
+          <span class="user-field-value">{{field.value}}</span>
+        </div>
+      {{/if}}
     {{/each}}
   </template>
 }
