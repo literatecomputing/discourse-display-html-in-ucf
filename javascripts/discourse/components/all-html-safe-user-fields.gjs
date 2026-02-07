@@ -45,7 +45,7 @@ export default class AllHtmlSafeUserFields extends Component {
     {{#each this.fields as |field|}}
       {{#if field.shouldRender}}
         <div
-          class="html-safe-public-user-field html-safe-ucf"
+          class="html-safe-public-user-field html-safe-ucf html-safe-ucf-{{field.id}}"
           data-field-id={{field.id}}
         >
           <span class="user-field-name">{{field.name}}: </span>
