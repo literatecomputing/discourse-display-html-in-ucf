@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
-import { htmlSafe } from "@ember/template";
+import { trustHTML } from "@ember/template";
 // Theme settings are accessed via the global 'settings' object in Discourse themes
 
 export default class AllHtmlSafeUserFields extends Component {
@@ -30,7 +30,7 @@ export default class AllHtmlSafeUserFields extends Component {
         const isHtmlSafe = htmlSafeFieldIds.includes(String(field.id));
         return {
           name: field.name,
-          value: isHtmlSafe ? htmlSafe(value) : value,
+          value: isHtmlSafe ? trustHTML(value) : value,
           id: field.id,
           shouldRender:
             this.args.page === "user-profile"
